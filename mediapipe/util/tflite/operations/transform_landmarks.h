@@ -12,19 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef MEDIAPIPE_UTIL_TFLITE_OPERATIONS_TRANSFORM_LANDMARKS_H_
-#define MEDIAPIPE_UTIL_TFLITE_OPERATIONS_TRANSFORM_LANDMARKS_H_
+#ifndef TENSORFLOW_LITE_KERNELS_TRANSFORM_LANDMARKS_H_
+#define TENSORFLOW_LITE_KERNELS_TRANSFORM_LANDMARKS_H_
 
 #include "tensorflow/lite/kernels/kernel_util.h"
 
-namespace mediapipe {
-namespace tflite_operations {
+namespace tflite {
+namespace ops {
+namespace custom {
 
 TfLiteRegistration* RegisterTransformLandmarksV1();
 
 TfLiteRegistration* RegisterTransformLandmarksV2();
 
-}  // namespace tflite_operations
-}  // namespace mediapipe
+}  // namespace custom
+}  // namespace ops
+}  // namespace tflite
 
 #endif  // MEDIAPIPE_UTIL_TFLITE_OPERATIONS_TRANSFORM_LANDMARKS_H_

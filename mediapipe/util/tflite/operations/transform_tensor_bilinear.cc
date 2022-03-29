@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/util/tflite/operations/transform_tensor_bilinear.h"
+#include "tensorflow/lite/kernels/transform_tensor_bilinear.h"
 
 #include "tensorflow/lite/delegates/gpu/common/mediapipe/transform_tensor_bilinear.h"
 #include "tensorflow/lite/delegates/gpu/common/types.h"
@@ -22,9 +22,10 @@
 #include "tensorflow/lite/kernels/padding.h"
 #include "tensorflow/lite/schema/schema_generated.h"
 
-namespace mediapipe {
-namespace tflite_operations {
-namespace {
+namespace tflite {
+namespace ops {
+namespace custom {
+namespace TransformTensorBilinear {
 
 constexpr int kDataInput0Tensor = 0;
 constexpr int kDataInput1Tensor = 1;
@@ -304,8 +305,8 @@ TfLiteRegistration* RegisterTransformTensorBilinearV1() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v1::Prepare,
-      /*.invoke=*/v1::Eval,
+      /*.prepare=*/TransformTensorBilinear::v1::Prepare,
+      /*.invoke=*/TransformTensorBilinear::v1::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"TransformTensor",
@@ -318,8 +319,8 @@ TfLiteRegistration* RegisterTransformTensorBilinearV2() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v2::Prepare,
-      /*.invoke=*/v2::Eval,
+      /*.prepare=*/TransformTensorBilinear::v2::Prepare,
+      /*.invoke=*/TransformTensorBilinear::v2::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"TransformTensorBilinear",
@@ -328,5 +329,6 @@ TfLiteRegistration* RegisterTransformTensorBilinearV2() {
   return &reg;
 }
 
-}  // namespace tflite_operations
-}  // namespace mediapipe
+}  // namespace custom
+}  // namespace ops
+}  // namespace tflite

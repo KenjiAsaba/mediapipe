@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/util/tflite/operations/landmarks_to_transform_matrix.h"
+#include "tensorflow/lite/kernels/landmarks_to_transform_matrix.h"
 
 #include <vector>
 
@@ -41,9 +41,10 @@ using ::tflite::NumInputs;
 using ::tflite::NumOutputs;
 using ::tflite::RuntimeShape;
 
-namespace mediapipe {
-namespace tflite_operations {
-namespace {
+namespace tflite {
+namespace ops {
+namespace custom {
+namespace Landmarks2TransformMatrix {
 
 constexpr int kDataInputTensor = 0;
 constexpr int kOutputTensor = 0;
@@ -528,8 +529,8 @@ TfLiteRegistration* RegisterLandmarksToTransformMatrixV1() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v1::Prepare,
-      /*.invoke=*/v1::Eval,
+      /*.prepare=*/Landmarks2TransformMatrix::v1::Prepare,
+      /*.invoke=*/Landmarks2TransformMatrix::v1::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"Landmarks2TransformMatrix",
@@ -541,8 +542,8 @@ TfLiteRegistration* RegisterLandmarksToTransformMatrixV2() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v2::Prepare,
-      /*.invoke=*/v2::Eval,
+      /*.prepare=*/Landmarks2TransformMatrix::v2::Prepare,
+      /*.invoke=*/Landmarks2TransformMatrix::v2::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"Landmarks2TransformMatrix",
@@ -551,5 +552,6 @@ TfLiteRegistration* RegisterLandmarksToTransformMatrixV2() {
   return &reg;
 }
 
-}  // namespace tflite_operations
-}  // namespace mediapipe
+}  // namespace custom
+}  // namespace ops
+}  // namespace tflite

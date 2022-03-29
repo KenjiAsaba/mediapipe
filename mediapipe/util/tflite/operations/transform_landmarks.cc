@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "mediapipe/util/tflite/operations/transform_landmarks.h"
+#include "tensorflow/lite/kernels/transform_landmarks.h"
 
 #include "tensorflow/lite/delegates/gpu/common/mediapipe/transform_landmarks.h"
 #include "tensorflow/lite/delegates/gpu/common/types.h"
@@ -22,9 +22,10 @@
 #include "tensorflow/lite/kernels/padding.h"
 #include "tensorflow/lite/schema/schema_generated.h"
 
-namespace mediapipe {
-namespace tflite_operations {
-namespace {
+namespace tflite {
+namespace ops {
+namespace custom {
+namespace TransformLandmarks {
 
 constexpr int kDataInput0Tensor = 0;
 constexpr int kDataInput1Tensor = 1;
@@ -270,8 +271,8 @@ TfLiteRegistration* RegisterTransformLandmarksV1() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v1::Prepare,
-      /*.invoke=*/v1::Eval,
+      /*.prepare=*/TransformLandmarks::v1::Prepare,
+      /*.invoke=*/TransformLandmarks::v1::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"TransformLandmarks",
@@ -284,8 +285,8 @@ TfLiteRegistration* RegisterTransformLandmarksV2() {
   static TfLiteRegistration reg = {
       /*.init=*/nullptr,
       /*.free=*/nullptr,
-      /*.prepare=*/v2::Prepare,
-      /*.invoke=*/v2::Eval,
+      /*.prepare=*/TransformLandmarks::v2::Prepare,
+      /*.invoke=*/TransformLandmarks::v2::Eval,
       /*.profiling_string=*/nullptr,
       /*.builtin_code=*/tflite::BuiltinOperator_CUSTOM,
       /*.custom_name=*/"TransformLandmarks",
@@ -294,5 +295,6 @@ TfLiteRegistration* RegisterTransformLandmarksV2() {
   return &reg;
 }
 
-}  // namespace tflite_operations
-}  // namespace mediapipe
+}  // namespace custom
+}  // namespace ops
+}  // namespace tflite
